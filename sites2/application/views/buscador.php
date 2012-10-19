@@ -80,7 +80,7 @@
 			</h2>
 		</div>
 
-	<form class="form-horizontal" id="FormCadastro" method="POST" action="cadastrarUsuario">  
+	<form class="form-horizontal" id="FormCadastro" method="POST" action="index.php/app/cadastrarUsuario">  
 			
 			<fieldset>
 
