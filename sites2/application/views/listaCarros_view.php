@@ -14,9 +14,10 @@
 	<form class="form-horizontal" id="FormCadastro" method="POST"
 			action="index.php/app/cadCarro">
 			
-			{carros}
-			<input name='carro' value='{carroNome}' type='radio'>
-			{/carros}
+			
+			{0}
+			<input name='carro' value='{usuarioCarro}' type='radio'>
+			{/5}
 			
 			<div class="form-actions">
 					<button type="submit" class="btn btn-primary">Salvar</button>	

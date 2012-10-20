@@ -5,7 +5,7 @@ class App extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('buscador');
-
+		$this->listAll();
 	}
 
 	/**
@@ -13,33 +13,11 @@ class App extends CI_Controller {
 	 */
 	public function listAll()
 	{
-
 		// Lista todos os usuarios //
 		$data['usuarios'] = $this->usuario_model->listar(0);
 
 		$this->parser->parse('listaUsuarios', $data);
 	}
-
-
-	/**
-	 * Recupera as informacoes da view newUser, e carrega o model para gravar no banco os dados
-	 */
-	public function cadastrarUsuario()
-	{
-			
-		// Recupera dos dados a serem cadastrados //
-		$data['usuarioNome']     	= $this->input->post('Nome');
-		$data['usuarioSexo']		= $this->input->post('Sexo');
-		$data['usuarioIdade']    	= $this->input->post('Idade');
-		$data['usuarioSalario'] 	= $this->input->post('Salario');
-		$data['usuarioEstCivil']   	= $this->input->post('Civil');
-		$data['usuarioNumFilhos']	= $this->input->post('Filhos');
-
-		echo"teste";//print_r($data['usuarios'][0]->usuarioNome);
-			
-		$this->parser->parse('listaUsuarios', $data);
-	}
-
 
 	/**
 	 * Recupera as informacoes da view newUser, e carrega o model para gravar no banco os dados
@@ -59,7 +37,7 @@ class App extends CI_Controller {
 		//print_r($data2);
 			
 		// Insere os dados do novo usuario no bd //
-		$this->usuario_model->cadastrar($data);
+		//$this->usuario_model->cadastrar($data);
 			
 		$indices = $this->calculaSimilaridade($data, $data2);
 			

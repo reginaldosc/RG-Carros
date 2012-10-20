@@ -4,15 +4,13 @@
 
 <div class="page-header">
 		<h2>
-			Resultado<small> da Pesquisa</small>
+			Lista<small> de Clientes Cadastrados</small>
 		</h2>
 	</div>
 	
 		<br>
 
-<form class="form-horizontal" id="FormCadastro" method="POST"
-			action="index.php/app/listAll">	
-
+<form class="form-horizontal" id="FormCadastro" method="POST" action="index.php/app/listAll">	
 	<!-- Tabela com a lista dos usuarios do sistema -->
 	<table class='table table-bordered table-striped'>
 		<thead>

@@ -61,11 +61,9 @@ class Usuario_model extends CI_Model {
 			$this->db->from('Usuario');
 			$this->db->where('usuarioID', $ids[$i]);
 			$query= $this->db->get();
-			$busca[] = $query->result();
-				
-		}
-		//print_r($busca);
-
+			$busca{$i} = $query->result();
+		}	
+		
 		return $busca;
 	}
 	
