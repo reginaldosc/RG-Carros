@@ -92,9 +92,14 @@ p.footer {
 			</h2>
 		</div>
 
+<<<<<<< HEAD
 		<form class="form-horizontal" id="FormCadastro" method="POST"
 			action="index.php/app/cadastrarUsuario">
 
+=======
+	<form class="form-horizontal" id="FormCadastro" method="POST" action="index.php/app/cadastrarUsuario">  
+			
+>>>>>>> b510201c6b9a44f4f36ec294ecb8fff7f913253a
 			<fieldset>
 
 				<div class="control-group">
