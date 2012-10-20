@@ -171,7 +171,7 @@ p.footer {
 				<div class="form-actions">
 					<button type="submit" class="btn btn-primary">Buscar</button>
 					<button class="btn" type="reset">Limpar</button>
-					<input type='button' size='40' value='Listar Usuarios' onclick="listAll"></input>		
+					<button> <a href="<?php echo site_url()?>/app/listAll"> Lista Usuarios </a> </button>
 				</div>
 			
 			</fieldset>

@@ -4,7 +4,7 @@ class App extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('listaCarros_view');
+		$this->load->view('buscador');
 
 	}
 
@@ -17,9 +17,7 @@ class App extends CI_Controller {
 		// Lista todos os usuarios //
 		$data['usuarios'] = $this->usuario_model->listar(0);
 
-		//print_r($data['usuarios'][0]->usuarioNome);
-			
-		$this->load->view('views/listaUsuarios', $data);
+		$this->parser->parse('listaUsuarios', $data);
 	}
 
 
