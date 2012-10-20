@@ -171,14 +171,12 @@ p.footer {
 				<div class="form-actions">
 					<button type="submit" class="btn btn-primary">Buscar</button>
 					<button class="btn" type="reset">Limpar</button>
-							
+					<button> <a href="<?php echo site_url()?>/app/listAll"> Lista Usuarios </a> </button>
 				</div>
 			
 			</fieldset>
 		</form>
-		
-		<button href='index.php/app/listAll'>Listar Usuarios</button>
-
+</div>
 
 </body>
 
