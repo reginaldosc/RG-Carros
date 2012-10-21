@@ -175,14 +175,11 @@ p.footer {
 				</div>
 			
 			</fieldset>
+			<br><br>
 		</form>
 
 </div>
 
 </body>
 
-
-<footer>
-	<p>Univali - Universidade do Vale do Itajai - Reginaldo Gonçalves 2012</p>
-</footer>
 </html>

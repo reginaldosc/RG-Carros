@@ -40,19 +40,22 @@ class App extends CI_Controller {
 		//$this->usuario_model->cadastrar($data);
 			
 		$indices = $this->calculaSimilaridade($data, $data2);
-			
+		//print_r($indices);
+		
 		arsort ($indices);
 		$keys = array_keys($indices);
-		//print_r(array_keys($indices));
 			
-		$opcoes = $this->usuario_model->listarPorIndices($keys);
+		$opcoes['Carros'] = $this->usuario_model->listarPorIndices($keys);
 			
-		print_r($opcoes);	
-
-		//$this->load->view('views/listaCarros_view', $opcoes);
-		$this->parser->parse('listaCarros_view', $opcoes);
-		//redirect('usuario/listAll');
-
+		$tamanho = count($opcoes['Carros']);
+			
+		for ($i=0; $i < $tamanho; $i++) {
+			
+			$resultado['Carros'][$i]->usuarioCarro =  $opcoes['Carros'][$i][0]->usuarioCarro;
+			
+		}
+		$this->parser->parse('listaCarros_view', $resultado);
+		
 	}
 
 	/*
@@ -64,6 +67,7 @@ class App extends CI_Controller {
 		for ($i=0; $i < count($data2['users']); $i++)
 		{
 			$S[$i] = 0;
+			
 				
 			if($data['usuarioSexo']	== $data2['users'][$i]->usuarioSexo)
 			{
@@ -77,12 +81,12 @@ class App extends CI_Controller {
 			{
 				$S[$i] += 0.6;
 			}
-			if(($data['usuarioIdade'] >= ($data2['users'][$i]->usuarioIdade - 2)) ||
+			if(($data['usuarioIdade'] >= ($data2['users'][$i]->usuarioIdade - 2)) &&
 					($data['usuarioIdade']<= ($data2['users'][$i]->usuarioIdade + 2)))
 			{
 				$S[$i] += 0.6;
 			}
-			if(($data['usuarioSalario'] >= ($data2['users'][$i]->usuarioSalario - 150)) ||
+			if(($data['usuarioSalario'] >= ($data2['users'][$i]->usuarioSalario - 150)) &&
 					($data['usuarioSalario']<= ($data2['users'][$i]->usuarioSalario + 150)))
 			{
 				$S[$i] += 0.9;
@@ -90,13 +94,16 @@ class App extends CI_Controller {
 			//S=70%
 			if($S[$i] >= 2.1)
 			{
-				$S['carros'][$i] = $S[$i];
+				$S['carros'][$i+1] = $S[$i];
 				//$S['is'][$i] = $i;
 			}
-				
+				//print_r($S['carros']);
 		}
 		
+		
 		return ($S['carros']);
+		
+		
 	}
 	
 	
@@ -105,11 +112,13 @@ class App extends CI_Controller {
 	 */
 	public function cadCarro()
 	{
-		$data['usuarioCarro'] = $this->input->post('carro');
 		
-		$id = $this->input->post('id');
+		print_r($this->input->post('carro'));
+		//$data['usuarioCarro'] = $this->input->post('carro');
 		
-		$this->usuario_model->atualizaUsuario($id, $data);
+		//$id = $this->input->post('id');
+		
+		//$this->usuario_model->atualizaUsuario($id, $data);
 		
 	}
 

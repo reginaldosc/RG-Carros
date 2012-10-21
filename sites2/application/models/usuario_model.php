@@ -19,7 +19,12 @@ class Usuario_model extends CI_Model {
 	 */
 	function cadastrar($data)
 	{
-		return $this->db->insert('Usuario', $data);
+		$this->db->insert('Usuario', $data);
+		$this->db->select('usuarioID');
+		$this->db->from('Usuario');
+		$this->db->where($data);
+		$query = $this->db->get();
+		return ($query->result());
 	}
 
 
@@ -62,8 +67,8 @@ class Usuario_model extends CI_Model {
 			$this->db->where('usuarioID', $ids[$i]);
 			$query= $this->db->get();
 			$busca{$i} = $query->result();
-		}	
-		
+		}
+	
 		return $busca;
 	}
 	
