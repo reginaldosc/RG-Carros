@@ -37,7 +37,7 @@ class App extends CI_Controller {
 		//print_r($data2);
 			
 		// Insere os dados do novo usuario no bd //
-		//$this->usuario_model->cadastrar($data);
+		$this->usuario_model->cadastrar($data);
 			
 		$indices = $this->calculaSimilaridade($data, $data2);
 		//print_r($indices);
@@ -113,15 +113,23 @@ class App extends CI_Controller {
 	public function cadCarro()
 	{
 		
-		print_r($this->input->post('carro'));
-		//$data['usuarioCarro'] = $this->input->post('carro');
+		$data['usuarioCarro'] = ($this->input->post('carro'));
 		
-		//$id = $this->input->post('id');
+		$id2 = $this->usuario_model->listar(1);
 		
-		//$this->usuario_model->atualizaUsuario($id, $data);
-		
+		$id = $id2[0]->usuarioID;
+	
+		if($data['usuarioCarro'] != NULL)	
+		{
+			$this->usuario_model->atualizaUsuario($id, $data);
+		}
+		else
+		{
+			$this->usuario_model->deletarUsuario($id);
+		}
+		$this->index();
 	}
-
+	
 }
 
 /* End of file app.php */

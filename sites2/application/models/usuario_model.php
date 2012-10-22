@@ -39,9 +39,21 @@ class Usuario_model extends CI_Model {
 			$this->db->select('*');
 			$this->db->from('Usuario');
 			$query = $this->db->get();
+			return $query->result();
 		}
 
-		return $query->result();
+		if($opcao == 1)
+		{
+			/*$sql = "SELECT `usuarioID` FROM Usuario ORDER BY `usuarioID` DESC LIMIT 1";
+			$this->db->select('usuarioID');
+			$this->db->from('Usuario');
+			$this->db->order_by('usuarioID', 'DESC');*/
+			
+			$this->db->select_max('usuarioID');
+			$query = $this->db->get('Usuario');
+			return $query->result();
+		}
+		
 	}
 
 
@@ -78,4 +90,9 @@ class Usuario_model extends CI_Model {
 		$this->db->update('Usuario', $data, "usuarioID = $id");
 	}
 
+	public function deletarUsuario($id)
+	{
+		$this->db->where('usuarioID', $id);
+		$this->db->delete('Usuario');
+	}
 }
