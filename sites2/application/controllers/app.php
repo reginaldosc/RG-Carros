@@ -4,6 +4,7 @@ class App extends CI_Controller {
 
 	public function index()
 	{
+				
 		$this->load->view('buscador');
 		$this->listAll();
 	}
@@ -40,14 +41,21 @@ class App extends CI_Controller {
 		$this->usuario_model->cadastrar($data);
 			
 		$indices = $this->calculaSimilaridade($data, $data2);
-		//print_r($indices);
 		
+		if($indices == NULL)
+		{
+			$resultado['Carros'][0]->usuarioCarro = "Nenhum carro encontrado";
+			$this->parser->parse('listaCarros_view', $resultado);
+		}
+		else
+		{
 		arsort ($indices);
 		$keys = array_keys($indices);
 			
 		$opcoes['Carros'] = $this->usuario_model->listarPorIndices($keys);
 			
 		$tamanho = count($opcoes['Carros']);
+		//print_r($opcoes);
 			
 		for ($i=0; $i < $tamanho; $i++) {
 			
@@ -55,7 +63,7 @@ class App extends CI_Controller {
 			
 		}
 		$this->parser->parse('listaCarros_view', $resultado);
-		
+		}
 	}
 
 	/*
@@ -63,6 +71,7 @@ class App extends CI_Controller {
 	 */
 	public function calculaSimilaridade($data, $data2)
 	{
+		$S['carros']=NULL;
 		
 		for ($i=0; $i < count($data2['users']); $i++)
 		{
@@ -97,12 +106,11 @@ class App extends CI_Controller {
 				$S['carros'][$i+1] = $S[$i];
 				//$S['is'][$i] = $i;
 			}
-				//print_r($S['carros']);
+			
 		}
 		
-		
 		return ($S['carros']);
-		
+	
 		
 	}
 	
@@ -113,7 +121,9 @@ class App extends CI_Controller {
 	public function cadCarro()
 	{
 		
-		$data['usuarioCarro'] = ($this->input->post('carro'));
+		$data['usuarioCarro'] = $this->input->post('carro');
+		
+		$data2['usuarioCarro'] = $this->input->post('Nome');
 		
 		$id2 = $this->usuario_model->listar(1);
 		
@@ -123,10 +133,15 @@ class App extends CI_Controller {
 		{
 			$this->usuario_model->atualizaUsuario($id, $data);
 		}
+		elseif($data2['usuarioCarro'] != NULL)
+		{
+			$this->usuario_model->atualizaUsuario($id, $data2);
+		} 
 		else
 		{
 			$this->usuario_model->deletarUsuario($id);
 		}
+		
 		$this->index();
 	}
 	

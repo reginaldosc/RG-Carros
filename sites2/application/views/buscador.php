@@ -92,8 +92,11 @@ p.footer {
 			</h2>
 		</div>
 
-	<form class="form-horizontal" id="FormCadastro" method="POST" action="index.php/app/cadastrarUsuario">  
-			
+	<!-- form class="form-horizontal" id="FormCadastro" method="POST" action="index.php/app/cadastrarUsuario"> -->  
+	<?php
+			$atributos = array('form class'=>'form-horizontal',  'id'=>'FormCadastro', 'method'=>'POST');
+			echo form_open('app/cadastrarUsuario', $atributos); 
+		?>		
 
 			<fieldset>
 

@@ -38,6 +38,7 @@ class Usuario_model extends CI_Model {
 		{
 			$this->db->select('*');
 			$this->db->from('Usuario');
+			$this->db->where_not_in('usuarioCarro','NULL' );
 			$query = $this->db->get();
 			return $query->result();
 		}
@@ -92,7 +93,15 @@ class Usuario_model extends CI_Model {
 
 	public function deletarUsuario($id)
 	{
+		$this->db->select('usuarioCarro');
+		$this->db->from('Usuario');
 		$this->db->where('usuarioID', $id);
-		$this->db->delete('Usuario');
+		$query= $this->db->get();
+		if ($query == NULL)
+		{
+			$this->db->where('usuarioID', $id);
+			$this->db->delete('Usuario');
+		}
+		
 	}
 }

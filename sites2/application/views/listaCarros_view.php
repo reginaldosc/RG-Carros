@@ -86,9 +86,6 @@ p.footer {
 			Resultado<small> da Pesquisa</small>
 		</h2>
 	</div>
-
-	
-			
 			
 			{Carros}
 			<label class="">
@@ -96,6 +93,16 @@ p.footer {
 				<p>{usuarioCarro}</p>
 			</label>
 			{/Carros}
+			<br>
+			
+			<div class="control-group">
+				<label class="control-label" for="">Carro</label>
+				<div class="control-group">
+					<input type="text" class="input-xlarge" id="Nome"
+						placeholder="Nome do Carro" name="Nome">
+				</div>
+			</div>
+				<br>
 			
 			<div class="form-actions">
 					<button type="submit" class="btn btn-primary">Salvar</button>	
